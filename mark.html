@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering Form with Payment</title>
+    <link rel="stylesheet" href="sa.css">
+</head>
+<body>
+
+<h1>Ordering Form</h1>
+
+<form id="order-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea><br><br>
+    
+    <button type="submit" onclick="placeOrder()">Place Order</button>
+</form>
+<style>
+body {
+  background-image: url('https://img.freepik.com/premium-photo/top-view-online-shopping-concept-with-credit-card-smart-phone-computer-isolated-office-yellow-table-background_315337-3591.jpg');
+  background-repeat: no-repeat;
+  background-attachment: 100%;
+  background-size: cover;
+}
+</style>
+<script src="sc.js"></script>
+
+</body>
+</html>

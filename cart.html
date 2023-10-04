@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <!-- Include any CSS styles you want for the cart page -->
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <ul class="cart-list"></ul>
+    <script>
+        // Retrieve the shopping cart data from localStorage
+        const storedCart = JSON.parse(localStorage.getItem("cart"));
+
+        const cartList = document.querySelector(".cart-list");
+
+        function displayCart() {
+            if (storedCart && storedCart.length > 0) {
+                const cartItems = storedCart.map((product) => `<li>${product.name} - Rs.${product.amt}</li>`);
+                cartList.innerHTML = cartItems.join("");
+            } else {
+                cartList.innerHTML = "<li>Your cart is empty.</li>";
+            }
+        }
+
+        displayCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Sell Your Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ooGBhk1ODrOPZjwDP5qKh7mLzDweUdnu5bGAR2Fz90PtR5L6__6esXzJ2fR4q0fZBb0&usqp=CAU');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        main {
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            width: 80%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        input[type="file"],
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="button"] {
+            background-color: #0073e6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0057b3;
+        }
+
+        .thank-you {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .feedback-form {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback-form label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .feedback-form input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .feedback-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Sell Your Product</h1>
+    <main>
+        <p>Fill out the form below to sell your product:</p>
+        <form id="productForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="product">Product Name:</label>
+                <input type="text" id="product" name="product" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Product Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Product Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Submit" onclick="showThankYouMessage()">
+            </div>
+        </form>
+        <div id="thankYouMessage" class="thank-you">
+            <p>Thank you for selling your wonderful product!</p>
+            <p>Your Details:</p>
+            <p><strong>Name:</strong> <span id="submittedName"></span></p>
+            <p><strong>Email:</strong> <span id="submittedEmail"></span></p>
+            <p><strong>Product Name:</strong> <span id="submittedProduct"></span></p>
+            <p><strong>Product Description:</strong> <span id="submittedDescription"></span></p>
+            <p><strong>Product Price:</strong> $<span id="submittedPrice"></span></p>
+            <p><strong>Product Image:</strong></p>
+            <img id="submittedImage" src="" alt="Uploaded Image">
+        </div>
+        <div class="feedback-form">
+            <h2>Feedback Form</h2>
+            <form id="userFeedbackForm">
+                <div class="form-group">
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" name="feedback" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit Feedback">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function showThankYouMessage() {
+            // Get form input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const product = document.getElementById('product').value;
+            const description = document.getElementById('description').value;
+            const price = document.getElementById('price').value;
+            const image = document.getElementById('image').files[0];
+
+            // Display thank you message with details and image
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const submittedName = document.getElementById('submittedName');
+            const submittedEmail = document.getElementById('submittedEmail');
+            const submittedProduct = document.getElementById('submittedProduct');
+            const submittedDescription = document.getElementById('submittedDescription');
+            const submittedPrice = document.getElementById('submittedPrice');
+            const submittedImage = document.getElementById('submittedImage');
+
+            submittedName.textContent = name;
+            submittedEmail.textContent = email;
+            submittedProduct.textContent = product;
+            submittedDescription.textContent = description;
+            submittedPrice.textContent = price;
+            
+            // Display the uploaded image
+            submittedImage.src = URL.createObjectURL(image);
+            submittedImage.style.display = 'block';
+
+            thankYouMessage.style.display = 'block';
+
+            // Show feedback form
+            const feedbackForm = document.querySelector('.feedback-form');
+            feedbackForm.style.display = 'block';
+        }
+
+        // Handle feedback form submission
+        document.getElementById('userFeedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get user feedback
+            const feedback = document.getElementById('feedback').value;
+
+            // You can handle the feedback data here (e.g., send it to a server or store it in a database)
+
+            // For demonstration purposes, let's show an alert with the feedback message
+            alert('Thank you for your feedback: ' + feedback);
+
+            // Reset the feedback form after submission
+            document.getElementById('userFeedbackForm').reset();
+        });
+    </script>
+</body>
+</html>
